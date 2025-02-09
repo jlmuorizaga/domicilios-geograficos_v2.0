@@ -1,0 +1,35 @@
+export class DomicilioGeografico {
+  id!: string;
+  cve_ent!: string;
+  nom_ent!: string;
+  cve_mun!: string;
+  nom_mun!: string;
+  cve_loc!: string;
+  nom_loc!: string;
+  ambito!: string;
+  cve_tipo_vialidad!: string;
+  nom_tipo_vialidad!: string;
+  cve_nombre_vialidad!: string;
+  nom_nombre_vialidad!: string;
+  numero_exterior!: string;
+  numero_interior!: string;
+  cve_tipo_asentamiento!: string;
+  nom_tipo_asentamiento!: string;
+  cve_nombre_asentamiento!: string;
+  nom_nombre_asentamiento!: string;
+  codigo_postal!: string;
+  cve_tipo_vialidad_referencia1!: string;
+  nom_tipo_vialidad_referencia1!: string;
+  cve_nombre_vialidad_referencia1!: string;
+  nom_nombre_vialidad_referencia1!: string;
+  cve_tipo_vialidad_referencia2!: string;
+  nom_tipo_vialidad_referencia2!: string;
+  cve_nombre_vialidad_referencia2!: string;
+  nom_nombre_vialidad_referencia2!: string;
+  cve_tipo_vialidad_posterior!: string;
+  nom_tipo_vialidad_posterior!: string;
+  cve_nombre_vialidad_posterior!: string;
+  nom_nombre_vialidad_posterior!: string;
+  descripcion_ubicacion!: string;
+  seleccionado!: boolean;
+}

@@ -1,0 +1,41 @@
+<ion-header [translucent]="true">
+  <ion-toolbar class="encabezado">
+    <ion-grid>
+      <ion-row>
+        <ion-col class="head-img" size-sm="12" size-md="3" size-lg="3" size-xl="3" size="12">
+          <img src="assets/img/Logo_INEGI.jpg" width="100%" alt="Logo de INEGI" title="Logo de INEGI" />
+        </ion-col>
+        <ion-col class="head-head" size-sm="12" size-md="9" size-lg="9" size-xl="9" size="12">
+          <h3>Domicilios Geográficos</h3>
+          <h3>
+            <span class="head-title-all">Herramienta de captura</span>
+          </h3>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size="12" class="head-subtitle">
+          <label>Menú</label>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Domicilios Geográficos (menu)</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <div class="background-container">
+    <div class="image image1" (click)="onClickCapturar()">
+      <p class="image-text">Capturar</p>
+    </div>
+    <div class="image image2" (click)="onClickEditar()">
+      <p class="image-text">Editar</p>
+    </div>
+    <div class="image image3" (click)="onClickExportar()">
+      <p class="image-text">Exportar</p>
+    </div>
+  </div>
+</ion-content>

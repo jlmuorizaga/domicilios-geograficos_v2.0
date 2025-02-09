@@ -1,0 +1,18 @@
+ion-content {
+  --background: #fff;
+}
+
+#container {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  text-align: center;
+}
+
+h1 {
+  font-size: 3.00rem;
+  font-weight: bold;
+  color: #103160;
+}

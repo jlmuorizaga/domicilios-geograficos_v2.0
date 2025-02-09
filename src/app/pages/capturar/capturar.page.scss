@@ -1,0 +1,208 @@
+.encabezado {
+  ion-grid {
+    background: #ddd;
+  }
+}
+
+.head-img {
+  display: flex;
+  justify-content: center;
+  background-color: #fff;
+  border: 0.05rem solid #103160;
+}
+
+.head-head {
+  display: block;
+  justify-content: center;
+  text-align: center;
+  background-color: #103160;
+}
+
+h3 {
+  margin: 0;
+  font-size: 3.00rem;
+  color: #fff;
+}
+
+.head-title-all {
+  font-size: 2.00rem;
+  color: #fff;
+}
+
+.head-subtitle {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 1.25rem;
+  font-weight: bold;
+  color: #103160;
+
+  display: flex;
+  //justify-content: center; /* Alinea horizontalmente */
+  align-items: center; /* Alinea verticalmente */
+  //height: 100%; /* Asegura que el col ocupe todo el espacio vertical */
+}
+
+@media screen and (max-width:900px) {
+  h3 { font-size: 2.75rem; }
+  .head-title-all { font-size: 1.75rem; }
+}
+
+@media screen and (max-width:850px) {
+  h3 { font-size: 2.50rem; }
+  .head-title-all { font-size: 1.50rem; }
+}
+
+@media screen and (max-width:600px) {
+  h3 { font-size: 2.25rem; }
+  .head-title-all { font-size: 1.25rem; }
+}
+
+@media screen and (max-width:540px) {
+  h3 { font-size: 2.00rem; }
+  .head-title-all { font-size: 1.00rem; }
+}
+
+@media screen and (max-width:480px) {
+  h3 { font-size: 1.75rem; }
+  .head-title-all { font-size: 0.75rem; }
+}
+
+ion-content {
+  --background: #c0c0c0;
+}
+
+ion-back-button {
+  --color: #103160;
+}
+
+.formulario {
+  padding: 2.00rem 1.50rem 2.00rem 1.50rem;
+  background-color: #efefef;
+}
+
+::ng-deep ion-input input {
+  cursor: pointer;
+}
+
+::ng-deep ion-input input:focus {
+  cursor: pointer;
+}
+/*
+::ng-deep ion-input .input-wrapper {
+  cursor: pointer;
+}
+*/
+
+ion-list {
+  cursor: pointer;
+  max-height: 15.00rem;
+  overflow-y: auto;
+  //padding-left: 1.00rem;
+  //background-color: #ccc;
+  ion-item::part(native) {
+    background-color: #ddd;
+    //transition: background-color 0.5s;
+  }
+  ion-item:hover::part(native) {
+    background-color: #103160;
+    color: #fff;
+  }
+}
+
+::ng-deep .urbano-text {
+  font-weight: bold;
+  color:#000;
+}
+
+::ng-deep .rural-text {
+  font-style: italic;
+  color:#333;
+}
+
+.dosCols {
+  padding: 0;
+}
+
+.submit {
+  padding: 2.00rem 0 2.00rem 0;
+}
+
+.botonSubmit {
+  text-align: center;
+}
+
+ion-button {
+  --background: #103160;
+  --color: #fff;
+}
+
+ion-textarea {
+  height: 10.0rem;
+}
+
+
+
+// Tooltips
+.tooltip-container {
+  position: relative;
+  display: inline-block;
+}
+
+.tooltip-target {
+  color: #103160;
+  cursor: pointer;
+}
+
+.tooltip {
+  visibility: hidden;
+  background-color: #103160;
+  color: #fff;
+  text-align: justify;
+  border-radius: 3px;
+  padding: 20px;
+  font-size: 12px;
+  position: absolute;
+  z-index: 10;
+  width: 20.00rem; /* Puedes ajustar el ancho según tus necesidades */
+  bottom: 1.50rem; /* Ubica el tooltip en el centro del botón */
+  /*left: 15.00rem; Centrado horizontal */
+  /*transform: translate(-50%, 50%); Ajusta el tooltip para que esté centrado */
+  white-space: normal; /* Permite saltos de línea */
+  word-wrap: break-word; /* Ajusta las palabras largas */
+  overflow-wrap: break-word; /* Asegura el ajuste de palabras */
+  opacity: 0;
+  transition: opacity 0.3s;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.tooltip-container:hover .tooltip {
+  visibility: visible;
+  opacity: 1;
+}
+
+
+
+ion-input {
+  position: relative;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 10px;
+  transition: all 0.3s ease;
+}
+
+ion-input:focus-within {
+  box-shadow: 0 10px 10px 0 rgba(12, 38, 74, 0.5); //, 0 2px 12px rgba(12, 38, 74, 0.5);
+  //transform: scale(1.05) rotateX(1deg) rotateY(1deg); // Efecto 3D al enfocarse
+  //transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+ion-input:active {
+  box-shadow: 0 10px 10px 0 rgba(12, 38, 74, 0.5);
+  //transform: scale(0.98); // Efecto de presionar
+}
+
+/* Opcional: Efecto cuando el usuario pasa el cursor sobre el input */
+ion-input:hover {
+  box-shadow: 0px 10px 10px 0 rgba(12, 38, 74, 0.5);
+  //transform: translateY(-3px);
+  //transition: transform 0.3s ease, box-shadow 0.3s ease;
+}

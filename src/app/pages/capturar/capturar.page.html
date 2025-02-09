@@ -1,0 +1,409 @@
+<ion-header [translucent]="true">
+  <ion-toolbar class="encabezado">
+    <ion-grid>
+      <ion-row>
+        <ion-col class="head-img" size="12" sizeXs="12" sizeSm="12" sizeMd="3" sizeLg="3" sizeXl="3">
+          <img src="assets/img/Logo_INEGI.jpg" width="100%" alt="Logo de INEGI" title="Logo de INEGI" />
+        </ion-col>
+        <ion-col class="head-head" size="12" sizeXs="12" sizeSm="12" sizeMd="9" sizeLg="9" sizeXl="9">
+          <h3>Domicilios Geográficos</h3>
+          <h3>
+            <span class="head-title-all">Herramienta de captura</span>
+          </h3>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size="1">
+          <ion-buttons>
+            <ion-back-button defaultHref="{{backButton}}"></ion-back-button>
+          </ion-buttons>
+        </ion-col>
+        <ion-col size="11" class="head-subtitle">
+          <label>{{titulo}}</label>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form [formGroup]="formularioCapturar" (ngSubmit)="submitForm()">
+    <ion-grid fixed class="formulario">
+      <ion-row>
+        <p>* Datos obligatorios</p>
+        <ion-col size="12"><h4><b>Principales</b></h4></ion-col>
+        <ion-col size="12">
+          <div class="tooltip-container">
+            <ion-icon name="information-circle-outline" class="tooltip-target"></ion-icon>
+            <div class="tooltip">
+              {{tooltipEntidad}}
+            </div>
+          </div>
+          <ion-input formControlName="nom_ent" label="* Entidad federativa" label-placement="floating"
+          fill="outline" placeholder="Buscar Entidad federativa"
+          (input)="filterOptions('nom_ent')" [readonly]="false" (keydown)="onKeyDown($event, 'nom_ent')"
+          (click)="toggleOptions('nom_ent')" errorText="Entidad federativa no válida">
+          </ion-input>
+          @if(isOptionsVisibleEntidades) {
+          <ion-list>
+            @for (entidad of filteredEntidades; track $index) {
+              <ion-item (click)="selectOption(entidad, 'nom_ent')">{{ entidad.nomgeo }}</ion-item>
+            }
+          </ion-list>
+          }
+        </ion-col>
+
+        <ion-col size="12">
+          <div class="tooltip-container">
+            <ion-icon name="information-circle-outline" class="tooltip-target"></ion-icon>
+            <div class="tooltip">
+              {{tooltipMunicipio}}
+            </div>
+          </div>
+          <ion-input formControlName="nom_mun" label="* Municipio o demarcación territorial" label-placement="floating"
+          fill="outline" placeholder="Buscar Municipio o demarcación territorial"
+          (input)="filterOptions('nom_mun')" [readonly]="false" (keydown)="onKeyDown($event, 'nom_mun')"
+          (click)="toggleOptions('nom_mun')" errorText="Municipio o demarcación territorial no válida">
+          </ion-input>
+          @if(isOptionsVisibleMunicipios) {
+          <ion-list>
+            @for (municipio of filteredMunicipios; track $index) {
+              <ion-item (click)="selectOption(municipio, 'nom_mun')">{{ municipio.nomgeo }}</ion-item>
+            }
+          </ion-list>
+          }
+        </ion-col>
+
+        <ion-col size="12">
+          <div class="tooltip-container">
+            <ion-icon name="information-circle-outline" class="tooltip-target"></ion-icon>
+            <div class="tooltip">
+              {{tooltipLocalidad}}
+            </div>
+          </div>
+          <ion-input formControlName="nom_loc" label="* Localidad" label-placement="floating"
+          fill="outline" placeholder="Buscar Localidad"
+          (input)="filterOptions('nom_loc')" [readonly]="false" (keydown)="onKeyDown($event, 'nom_loc')"
+          (click)="toggleOptions('nom_loc')" errorText="Localidad no válida">
+          </ion-input>
+          @if(isOptionsVisibleLocalidades) {
+          <ion-list>
+            @for (localidad of filteredLocalidades; track $index) {
+              <ion-item (click)="selectOption(localidad, 'nom_loc')"
+              [ngClass]="{
+                'urbano-text': localidad.ambito === 'Urbano',
+                'rural-text': localidad.ambito === 'Rural'
+              }">
+              {{ localidad.nomgeo }}
+            </ion-item>
+            }
+          </ion-list>
+          }
+        </ion-col>
+
+        <ion-col size="12" class="dosCols">
+          <ion-row>
+            <ion-col size="6" sizeXs="12" sizeSm="12" sizeMd="12" sizeLg="6" sizeXl="6">
+              <div class="tooltip-container">
+                <ion-icon name="information-circle-outline" class="tooltip-target"></ion-icon>
+                <div class="tooltip">
+                  {{tooltipTipoVialidad}}
+                </div>
+              </div>
+              <ion-input formControlName="nom_tipo_vialidad" label="* Tipo de vialidad" label-placement="floating"
+              fill="outline" placeholder="Buscar Tipo de vialidad"
+              (input)="filterOptions('nom_tipo_vialidad')" [readonly]="false" (keydown)="onKeyDown($event, 'nom_tipo_vialidad')"
+              (click)="toggleOptions('nom_tipo_vialidad')" errorText="Tipo de vialidad no válida">
+              </ion-input>
+              @if(isOptionsVisibleTiposVialidades) {
+              <ion-list>
+                @for (tipoVialidad of filteredTiposVialidades; track $index) {
+                  <ion-item (click)="selectOption(tipoVialidad, 'nom_tipo_vialidad')">{{ tipoVialidad.descripcion }}</ion-item>
+                }
+              </ion-list>
+              }
+            </ion-col>
+            <ion-col size="6" sizeXs="12" sizeSm="12" sizeMd="12" sizeLg="6" sizeXl="6">
+              <div class="tooltip-container">
+                <ion-icon name="information-circle-outline" class="tooltip-target"></ion-icon>
+                <div class="tooltip">
+                  {{tooltipNombreVialidad}}
+                </div>
+              </div>
+              <ion-input formControlName="nom_nombre_vialidad" label="* Nombre de vialidad" label-placement="floating"
+              fill="outline" placeholder="Buscar Nombre de vialidad"
+              (input)="filterOptions('nom_nombre_vialidad')" [readonly]="false" (keydown)="onKeyDown($event, 'nom_nombre_vialidad')"
+              (click)="toggleOptions('nom_nombre_vialidad')" errorText="Nombre de vialidad no válida" maxlength="255">
+              </ion-input>
+              <!--div>
+                @if(controlSpinner.showSpinner) {
+                  <ion-spinner name="lines"></ion-spinner>
+                }
+              </!--div-->
+              @if(isOptionsVisibleNombresVialidades) {
+                <ion-list>
+                @for (nombreVialidad of filteredNombresVialidades; track $index) {
+                  <ion-item (click)="selectOption(nombreVialidad, 'nom_nombre_vialidad')">{{ nombreVialidad.nomvial }}</ion-item>
+                }
+                </ion-list>
+              }
+            </ion-col>
+          </ion-row>
+        </ion-col>
+
+        <ion-col size="12">
+          <div class="tooltip-container">
+            <ion-icon name="information-circle-outline" class="tooltip-target"></ion-icon>
+            <div class="tooltip">
+              {{tooltipNumeroExterior}}
+            </div>
+          </div>
+          <ion-input formControlName="numero_exterior" label="* Número exterior" label-placement="floating"
+          fill="outline" placeholder="Número exterior"
+          [readonly]="false" (keydown)="onKeyDown($event, 'numero_exterior')"
+          (click)="toggleOptions('numero_exterior')" errorText="Número exterior no válido" maxlength="50">
+          </ion-input>
+          @if(isOptionsVisibleNumerosExteriores) {
+            <ion-list>
+              @for (numeroExterior of allNumerosExteriores; track $index) {
+                <ion-item (click)="selectOption(numeroExterior, 'numero_exterior')">{{ numeroExterior }}</ion-item>
+              }
+            </ion-list>
+          }
+        </ion-col>
+
+        <ion-col size="12">
+          <div class="tooltip-container">
+            <ion-icon name="information-circle-outline" class="tooltip-target"></ion-icon>
+            <div class="tooltip">
+              {{tooltipNumeroInterior}}
+            </div>
+          </div>
+          <ion-input formControlName="numero_interior" label="Número interior" label-placement="floating"
+          fill="outline" placeholder="Número interior"
+          [readonly]="false" (keydown)="onKeyDown($event, 'numero_interior')"
+          errorText="Número interior no válido" maxlength="50">
+          </ion-input>
+        </ion-col>
+
+        <ion-col size="12" class="dosCols">
+          <ion-row>
+            <ion-col size="6" sizeXs="12" sizeSm="12" sizeMd="12" sizeLg="6" sizeXl="6">
+              <div class="tooltip-container">
+                <ion-icon name="information-circle-outline" class="tooltip-target"></ion-icon>
+                <div class="tooltip">
+                  {{tooltipTipoAsentamiento}}
+                </div>
+              </div>
+              <ion-input formControlName="nom_tipo_asentamiento" label="* Tipo de asentamiento" label-placement="floating"
+              fill="outline" placeholder="Buscar Tipo de asentamiento"
+              (input)="filterOptions('nom_tipo_asentamiento')" [readonly]="false" (keydown)="onKeyDown($event, 'nom_tipo_asentamiento')"
+              (click)="toggleOptions('nom_tipo_asentamiento')" errorText="Tipo de asentamiento no válido">
+              </ion-input>
+              @if(isOptionsVisibleTiposAsentamientos) {
+              <ion-list>
+                @for (tipoAsentamiento of filteredTiposAsentamientos; track $index) {
+                  <ion-item (click)="selectOption(tipoAsentamiento, 'nom_tipo_asentamiento')">{{ tipoAsentamiento.descripcion }}</ion-item>
+                }
+              </ion-list>
+              }
+            </ion-col>
+            <ion-col size="6" sizeXs="12" sizeSm="12" sizeMd="12" sizeLg="6" sizeXl="6">
+              <div class="tooltip-container">
+                <ion-icon name="information-circle-outline" class="tooltip-target"></ion-icon>
+                <div class="tooltip">
+                  {{tooltipNombreAsentamiento}}
+                </div>
+              </div>
+              <ion-input formControlName="nom_nombre_asentamiento" label="* Nombre de asentamiento" label-placement="floating"
+              fill="outline" placeholder="Buscar Nombre de asentamiento"
+              (input)="filterOptions('nom_nombre_asentamiento')" [readonly]="false" (keydown)="onKeyDown($event, 'nom_nombre_asentamiento')"
+              (click)="toggleOptions('nom_nombre_asentamiento')" errorText="Nombre de asentamiento no válido" maxlength="255">
+              </ion-input>
+              @if(isOptionsVisibleNombresAsentamientos) {
+              <ion-list>
+                @for (nombreAsentamiento of filteredNombresAsentamientos; track $index) {
+                  <ion-item (click)="selectOption(nombreAsentamiento, 'nom_nombre_asentamiento')">{{ nombreAsentamiento.nom_asen }}</ion-item>
+                }
+              </ion-list>
+              }
+            </ion-col>
+          </ion-row>
+        </ion-col>
+
+        <ion-col size="12">
+          <div class="tooltip-container">
+            <ion-icon name="information-circle-outline" class="tooltip-target"></ion-icon>
+            <div class="tooltip">
+              {{tooltipCodigoPostal}}
+            </div>
+          </div>
+          <ion-input formControlName="codigo_postal" label="* Código postal" label-placement="floating"
+          fill="outline" placeholder="Código postal (ausencia de dato -> 00000)"
+          [readonly]="false" (keydown)="onKeyDown($event, 'codigo_postal')"
+          errorText="Código postal no válido" minlength="5" maxlength="5">
+          </ion-input>
+        </ion-col>
+
+        <ion-col size="12"><h4><b>Complementarios</b></h4></ion-col>
+
+        <ion-col size="12" class="dosCols">
+          <ion-row>
+            <ion-col size="6" sizeXs="12" sizeSm="12" sizeMd="12" sizeLg="6" sizeXl="6">
+              <div class="tooltip-container">
+                <ion-icon name="information-circle-outline" class="tooltip-target"></ion-icon>
+                <div class="tooltip">
+                  {{tooltipTipoVialidadReferencia1}}
+                </div>
+              </div>
+              <ion-input formControlName="nom_tipo_vialidad_referencia1" label="Tipo de vialidad de referencia 1" label-placement="floating"
+              fill="outline" placeholder="Buscar Tipo de vialidad de referencia 1"
+              (input)="filterOptions('nom_tipo_vialidad_referencia1')" [readonly]="false" (keydown)="onKeyDown($event, 'nom_tipo_vialidad_referencia1')"
+              (click)="toggleOptions('nom_tipo_vialidad_referencia1')" errorText="Tipo de vialidad de referencia 1 no válida">
+              </ion-input>
+              @if(isOptionsVisibleTiposVialidadesReferencia1) {
+              <ion-list>
+                @for (tipoVialidadReferencia1 of filteredTiposVialidadesReferencia1; track $index) {
+                  <ion-item (click)="selectOption(tipoVialidadReferencia1, 'nom_tipo_vialidad_referencia1')">{{ tipoVialidadReferencia1.descripcion }}</ion-item>
+                }
+              </ion-list>
+              }
+            </ion-col>
+            <ion-col size="6" sizeXs="12" sizeSm="12" sizeMd="12" sizeLg="6" sizeXl="6">
+              <div class="tooltip-container">
+                <ion-icon name="information-circle-outline" class="tooltip-target"></ion-icon>
+                <div class="tooltip">
+                  {{tooltipNombreVialidadReferencia1}}
+                </div>
+              </div>
+              <ion-input formControlName="nom_nombre_vialidad_referencia1" label="Nombre de vialidad referencia 1" label-placement="floating"
+              fill="outline" placeholder="Buscar Nombre de vialidad referencia 1"
+              (input)="filterOptions('nom_nombre_vialidad_referencia1')" [readonly]="false" (keydown)="onKeyDown($event, 'nom_nombre_vialidad_referencia1')"
+              (click)="toggleOptions('nom_nombre_vialidad_referencia1')" errorText="Nombre de vialidad de referencia 1 no válida"
+              maxlength="255">
+              </ion-input>
+              @if(isOptionsVisibleNombresVialidadesReferencia1) {
+              <ion-list>
+                @for (nombreVialidadReferencia1 of filteredNombresVialidadesReferencia1; track $index) {
+                  <ion-item (click)="selectOption(nombreVialidadReferencia1, 'nom_nombre_vialidad_referencia1')">{{ nombreVialidadReferencia1.nomvial }}</ion-item>
+                }
+              </ion-list>
+              }
+            </ion-col>
+          </ion-row>
+        </ion-col>
+
+        <ion-col size="12" class="dosCols">
+          <ion-row>
+            <ion-col size="6" sizeXs="12" sizeSm="12" sizeMd="12" sizeLg="6" sizeXl="6">
+              <div class="tooltip-container">
+                <ion-icon name="information-circle-outline" class="tooltip-target"></ion-icon>
+                <div class="tooltip">
+                  {{tooltipTipoVialidadReferencia2}}
+                </div>
+              </div>
+              <ion-input formControlName="nom_tipo_vialidad_referencia2" label="Tipo de vialidad de referencia 2" label-placement="floating"
+              fill="outline" placeholder="Buscar Tipo de vialidad de referencia 2"
+              (input)="filterOptions('nom_tipo_vialidad_referencia2')" [readonly]="false" (keydown)="onKeyDown($event, 'nom_tipo_vialidad_referencia2')"
+              (click)="toggleOptions('nom_tipo_vialidad_referencia2')" errorText="Tipo de vialidad de referencia 2 no válida">
+              </ion-input>
+              @if(isOptionsVisibleTiposVialidadesReferencia2) {
+              <ion-list>
+                @for (tipoVialidadReferencia2 of filteredTiposVialidadesReferencia2; track $index) {
+                  <ion-item (click)="selectOption(tipoVialidadReferencia2, 'nom_tipo_vialidad_referencia2')">{{ tipoVialidadReferencia2.descripcion }}</ion-item>
+                }
+              </ion-list>
+              }
+            </ion-col>
+            <ion-col size="6" sizeXs="12" sizeSm="12" sizeMd="12" sizeLg="6" sizeXl="6">
+              <div class="tooltip-container">
+                <ion-icon name="information-circle-outline" class="tooltip-target"></ion-icon>
+                <div class="tooltip">
+                  {{tooltipNombreVialidadReferencia2}}
+                </div>
+              </div>
+              <ion-input formControlName="nom_nombre_vialidad_referencia2" label="Nombre de vialidad referencia 2" label-placement="floating"
+              fill="outline" placeholder="Buscar Nombre de vialidad referencia 2"
+              (input)="filterOptions('nom_nombre_vialidad_referencia2')" [readonly]="false" (keydown)="onKeyDown($event, 'nom_nombre_vialidad_referencia2')"
+              (click)="toggleOptions('nom_nombre_vialidad_referencia2')" errorText="Nombre de vialidad de referencia 2 no válida"
+              maxlength="255">
+              </ion-input>
+              @if(isOptionsVisibleNombresVialidadesReferencia2) {
+              <ion-list>
+                @for (nombreVialidadReferencia2 of filteredNombresVialidadesReferencia2; track $index) {
+                  <ion-item (click)="selectOption(nombreVialidadReferencia2, 'nom_nombre_vialidad_referencia2')">{{ nombreVialidadReferencia2.nomvial }}</ion-item>
+                }
+              </ion-list>
+              }
+            </ion-col>
+          </ion-row>
+        </ion-col>
+
+        <ion-col size="12" class="dosCols">
+          <ion-row>
+            <ion-col size="6" sizeXs="12" sizeSm="12" sizeMd="12" sizeLg="6" sizeXl="6">
+              <div class="tooltip-container">
+                <ion-icon name="information-circle-outline" class="tooltip-target"></ion-icon>
+                <div class="tooltip">
+                  {{tooltipTipoVialidadReferenciaPosterior}}
+                </div>
+              </div>
+              <ion-input formControlName="nom_tipo_vialidad_posterior" label="Tipo de vialidad posterior" label-placement="floating"
+              fill="outline" placeholder="Buscar Tipo de vialidad posterior"
+              (input)="filterOptions('nom_tipo_vialidad_posterior')" [readonly]="false" (keydown)="onKeyDown($event, 'nom_tipo_vialidad_posterior')"
+              (click)="toggleOptions('nom_tipo_vialidad_posterior')" errorText="Tipo de vialidad posterior no válida">
+              </ion-input>
+              @if(isOptionsVisibleTiposVialidadesPosterior) {
+              <ion-list>
+                @for (tipoVialidadPosterior of filteredTiposVialidadesPosterior; track $index) {
+                  <ion-item (click)="selectOption(tipoVialidadPosterior, 'nom_tipo_vialidad_posterior')">{{ tipoVialidadPosterior.descripcion }}</ion-item>
+                }
+              </ion-list>
+              }
+            </ion-col>
+            <ion-col size="6" sizeXs="12" sizeSm="12" sizeMd="12" sizeLg="6" sizeXl="6">
+              <div class="tooltip-container">
+                <ion-icon name="information-circle-outline" class="tooltip-target"></ion-icon>
+                <div class="tooltip">
+                  {{tooltipNombreVialidadReferenciaPosterior}}
+                </div>
+              </div>
+              <ion-input formControlName="nom_nombre_vialidad_posterior" label="Nombre de vialidad posterior" label-placement="floating"
+              fill="outline" placeholder="Buscar Nombre de vialidad posterior"
+              (input)="filterOptions('nom_nombre_vialidad_posterior')" [readonly]="false" (keydown)="onKeyDown($event, 'nom_nombre_vialidad_posterior')"
+              (click)="toggleOptions('nom_nombre_vialidad_posterior')" errorText="Nombre de vialidad posterior no válida"
+              maxlength="255">
+              </ion-input>
+              @if(isOptionsVisibleNombresVialidadesPosterior) {
+              <ion-list>
+                @for (nombreVialidadPosterior of filteredNombresVialidadesPosterior; track $index) {
+                  <ion-item (click)="selectOption(nombreVialidadPosterior, 'nom_nombre_vialidad_posterior')">{{ nombreVialidadPosterior.nomvial }}</ion-item>
+                }
+              </ion-list>
+              }
+            </ion-col>
+          </ion-row>
+        </ion-col>
+
+        <ion-col size="12">
+          <div class="tooltip-container">
+            <ion-icon name="information-circle-outline" class="tooltip-target"></ion-icon>
+            <div class="tooltip">
+              {{tooltipDescripcionUbicacion}}
+            </div>
+          </div>
+          <ion-textarea label="Descripción de ubicación" label-placement="floating" fill="outline" formControlName="descripcion_ubicacion"
+            placeholder="Descripción de ubicación" [autoGrow]="true" spellcheck="true" lang="es"
+            errorText="Descripción de ubicación no válida" maxlength="255">
+          </ion-textarea>
+        </ion-col>
+
+      </ion-row>
+      <ion-row class="submit">
+        <ion-col class="botonSubmit" size="12">
+          <ion-button [disabled]="formularioCapturar.invalid" small type="submit">{{textoBoton}}</ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </form>
+</ion-content>

@@ -1,0 +1,21 @@
+<ion-header [translucent]="true">
+  <!--ion-toolbar>
+    <ion-title>inicio</ion-title>
+  </!--ion-toolbar-->
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">inicio</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <div id="container">
+    <img src="assets/img/Logo_INEGI_v.jpg" alt="INEGI Logo" style="height: auto; width: 400px; object-fit: contain;">
+    <h1>Domicilios Geográficos</h1>
+    @if(showSpinner){
+      <br/>
+      <ion-spinner name="circular"></ion-spinner>
+    }
+  </div>
+</ion-content>

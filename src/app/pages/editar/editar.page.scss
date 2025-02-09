@@ -1,0 +1,225 @@
+.encabezado {
+  ion-grid {
+    background: #ddd;
+  }
+}
+
+.head-img {
+  display: flex;
+  justify-content: center;
+  background-color: #fff;
+  border: 0.05rem solid #103160;
+}
+
+.head-head {
+  display: block;
+  justify-content: center;
+  text-align: center;
+  background-color: #103160;
+}
+
+h3 {
+  margin: 0;
+  font-size: 3.00rem;
+  color: #fff;
+}
+
+.head-title-all {
+  font-size: 2.00rem;
+  color: #fff;
+}
+
+.head-subtitle {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 1.25rem;
+  font-weight: bold;
+  color: #103160;
+
+  display: flex;
+  //justify-content: center; /* Alinea horizontalmente */
+  align-items: center; /* Alinea verticalmente */
+  //height: 100%; /* Asegura que el col ocupe todo el espacio vertical */
+}
+
+@media screen and (max-width:900px) {
+  h3 { font-size: 2.75rem; }
+  .head-title-all { font-size: 1.75rem; }
+}
+
+@media screen and (max-width:850px) {
+  h3 { font-size: 2.50rem; }
+  .head-title-all { font-size: 1.50rem; }
+}
+
+@media screen and (max-width:600px) {
+  h3 { font-size: 2.25rem; }
+  .head-title-all { font-size: 1.25rem; }
+}
+
+@media screen and (max-width:540px) {
+  h3 { font-size: 2.00rem; }
+  .head-title-all { font-size: 1.00rem; }
+}
+
+@media screen and (max-width:480px) {
+  h3 { font-size: 1.75rem; }
+  .head-title-all { font-size: 0.75rem; }
+}
+
+ion-content {
+  --background: #c0c0c0;
+}
+
+ion-back-button {
+  --color: #103160;
+}
+
+.ion-text-end {
+  padding-right: 0.40rem;
+  color: #103160;
+}
+
+.totales {
+  --background: #fff;
+}
+
+::ng-deep .italic-text {
+  font-style: italic;
+}
+
+ion-chip {
+  width: 100%;
+  display: flex;
+  background:#888;
+  color: #fff;
+  border: 1px solid #fff;
+  justify-content: flex-start;
+  align-items: center;
+  font-weight:bold;
+}
+
+ion-card, ion-card-content {
+  margin-inline-start: 1px;
+  margin-inline-end: 1px;
+  padding-inline-start: 1px;
+  padding-inline-end: 1px;
+  text-align: justify;
+  ion-col {
+    text-align: start;
+  }
+}
+
+ion-accordion.accordion-expanding,
+ion-accordion.accordion-expanded {
+//  width: calc(100% - 32px);
+//  margin: 16px auto;
+  width: calc(100% - 0.00rem);
+  margin: 0.00rem auto;
+}
+
+ion-accordion.accordion-collapsing ion-item[slot='header'],
+ion-accordion.accordion-collapsed ion-item[slot='header'] {
+  --background: #eee;
+  --color: #fff;
+  ion-label {
+    color: #fff;
+    font-weight: bold;
+  }
+  .avatar {
+    text-align: center;
+    width: 3.50rem;
+    font-size: 0.75rem;
+    color: #103160;
+    border: 1px solid #103160;
+    border-radius: 15%;
+    padding: 2px 5px 2px 5px;
+  }
+}
+
+ion-accordion.accordion-expanding ion-item[slot='header'],
+ion-accordion.accordion-expanded ion-item[slot='header'] {
+  --background: #0074c7;
+  --color: #fff;
+  ion-label {
+    color: #fff;
+    font-weight: bold;
+  }
+  .avatar {
+    text-align: center;
+    width: 3.50rem;
+    font-size: 0.75rem;
+    color: #fff;
+    border: 1px solid #fff;
+    border-radius: 15%;
+    padding: 2px 5px 2px 5px;
+  }
+}
+
+.pagina {
+  margin-left: 1.00rem;
+  margin-right: 1.00rem;
+  font-size: 0.75rem;
+}
+
+.titulo {
+  width: 100%;
+  background-color: #ddd;
+  font-size: 1.00rem;
+  font-weight: bold;
+}
+
+.grid-principal {
+  padding-top: 3.00rem;
+  text-align: center;
+}
+
+p {
+  display: inline;
+  padding: 0.50rem;
+}
+
+.botones {
+  padding: 2.00rem 0.50rem 0.50rem 0.50rem;
+  ion-col {
+    text-align: center;
+    ion-button {
+      height: 4.00rem;
+      --background: #103160;
+      color: #fff;
+    }
+  }
+}
+
+.capitalize-button {
+    text-transform: lowercase; /* Convierte todo el texto a minúsculas */
+}
+
+.capitalize-button::first-letter {
+    text-transform: uppercase; /* Convierte solo la primera letra en mayúscula */
+}
+
+
+
+/*
+::ng-deep .custom-alert .alert-wrapper {
+  --background: #ffff90;    // Color de fondo del alert
+  --border-radius: 10px;      // Bordes redondeados
+  --color: #333;            // Color del texto
+}
+
+::ng-deep .custom-alert .alert-header {
+  color: #ff5722;           // Color personalizado del encabezado
+  font-weight: bold;
+}
+
+::ng-deep .custom-alert .alert-message {
+  color: #f00;              // Color del mensaje
+  font-size: 14px;
+}
+
+::ng-deep .custom-alert .alert-button {
+  --color: #ff5722;         // Color del texto del botón
+  --background: #000;       // Fondo del botón
+  --border-radius: 5px;
+}
+*/

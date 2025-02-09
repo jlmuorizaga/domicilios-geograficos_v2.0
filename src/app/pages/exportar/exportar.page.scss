@@ -1,0 +1,127 @@
+.encabezado {
+  ion-grid {
+    background: #ddd;
+  }
+}
+
+.head-img {
+  display: flex;
+  justify-content: center;
+  background-color: #fff;
+  border: 0.05rem solid #103160;
+}
+
+.head-head {
+  display: block;
+  justify-content: center;
+  text-align: center;
+  background-color: #103160;
+}
+
+h3 {
+  margin: 0;
+  font-size: 3.00rem;
+  color: #fff;
+}
+
+.head-title-all {
+  font-size: 2.00rem;
+  color: #fff;
+}
+
+.head-subtitle {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 1.25rem;
+  font-weight: bold;
+  color: #103160;
+
+  display: flex;
+  //justify-content: center; /* Alinea horizontalmente */
+  align-items: center; /* Alinea verticalmente */
+  //height: 100%; /* Asegura que el col ocupe todo el espacio vertical */
+}
+
+@media screen and (max-width:900px) {
+  h3 { font-size: 2.75rem; }
+  .head-title-all { font-size: 1.75rem; }
+}
+
+@media screen and (max-width:850px) {
+  h3 { font-size: 2.50rem; }
+  .head-title-all { font-size: 1.50rem; }
+}
+
+@media screen and (max-width:600px) {
+  h3 { font-size: 2.25rem; }
+  .head-title-all { font-size: 1.25rem; }
+}
+
+@media screen and (max-width:540px) {
+  h3 { font-size: 2.00rem; }
+  .head-title-all { font-size: 1.00rem; }
+}
+
+@media screen and (max-width:480px) {
+  h3 { font-size: 1.75rem; }
+  .head-title-all { font-size: 0.75rem; }
+}
+
+ion-content {
+  --background: #c0c0c0;
+}
+
+ion-back-button {
+  --color: #103160;
+}
+
+.ion-text-end {
+  color: #103160;
+}
+
+.totales {
+  --background: #fff;
+}
+
+::ng-deep .italic-text {
+  font-style: italic;
+}
+
+ion-chip {
+  width: 100%;
+  display: flex;
+  background:#888;
+  color: #fff;
+  border: 1px solid #fff;
+  justify-content: flex-start;
+  align-items: center;
+  font-weight:bold;
+  cursor: default;
+}
+
+span {
+  cursor: default;
+}
+
+.avatar {
+  text-align: center;
+  width: 3.50rem;
+  font-size: 0.75rem;
+  color: #103160; //000
+  border: 1px solid #103160;
+  border-radius: 15%;
+  padding: 2px 5px 2px 5px;
+}
+
+.iconos {
+  display: flex;
+  justify-content: end;
+  align-items: center;
+  gap: 1.00rem; /* Espacio entre imágenes */
+  padding: 1.00rem 0 0 0;
+}
+
+.boton-imagen {
+  width: 2.00rem;
+  height: 2.00rem;
+  cursor: pointer;
+}
